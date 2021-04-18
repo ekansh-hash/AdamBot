@@ -48,4 +48,19 @@ async def addresponse(message , *args):
 
   Add_Response(WholeMessage,Response)
 
+@bot.command(
+  help = """$WipeHistory <User> <filter> <Limit>
+  <Limit> is the total number of messages to iterate (not just <User>)
+  """
+)
+async def WipeHistory(client , user , filter , number):
+  await client.message.delete()
+  msg = []
+  async for message in client.message.channel.history(limit=int(number)):
+    if filter in message.content:
+      authorid = "<@!"+ str(message.author.id) + ">"
+      if authorid == user:
+        msg.append(message)
+  
+  await client.message.channel.delete_messages(msg)
 bot.run(os.getenv('TOKEN')) 
