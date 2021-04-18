@@ -7,7 +7,7 @@ def Add_Response(Message , Response):
     client = pymongo.MongoClient('mongodb://localhost:27017/')
     AdamDb = client["ChatBotAdam"]
     Message = Message.upper()
-    Msg = [{"_id":Message.strip(),"Respone":Response}]
+    Msg = [{"_id":Message.strip(),"Respone":Response.rstrip()}]
     AdamDb.Respone.insert(Msg)
 
 def Get_Response(WholeMessage):
