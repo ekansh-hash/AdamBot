@@ -1,0 +1,24 @@
+@bot.event
+async def on_message(message):
+"""    if message.author == bot.user:
+        return """
+      
+"""     WholeMessage = message.content
+
+    if "$addresponse" in WholeMessage :
+      WholeMessage = WholeMessage.split("$x")
+      if not CanAddResponses():
+        await message.channel.send("Ability to add responses has been disabled")
+        return 
+      try:
+        Add_Response(WholeMessage[1],WholeMessage[2])
+        await message.channel.send("Response Added!")
+      except:
+        await message.channel.send("This message is already present in the database!")
+
+    else:
+      if not CanRespond():
+        return 
+      SendMessage = Get_Response(WholeMessage)
+      if SendMessage != "":
+        await message.channel.send(SendMessage) """
